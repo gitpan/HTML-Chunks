@@ -4,4 +4,5 @@ examples/test.pl
 examples/test.txt
 lib/HTML/ChunkLocal.pm
 lib/HTML/Chunks.pm
+t/use.t
 readme

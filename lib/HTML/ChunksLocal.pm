@@ -1,6 +1,6 @@
 # $Id: Connection.pm,v 1.0 2002/02/25 16:39:39 dbalmer Exp $
 
-package HTML::ChunkLocal;
+package HTML::ChunksLocal;
 use HTML::Chunks;
 @ISA = qw(HTML::Chunks);
 
@@ -66,7 +66,7 @@ __END__
 
 =head1 NAME
 
-HTML::ChunkLocal - A simple localization layer for HTML::Chunks
+HTML::ChunkisLocal - A simple localization layer for HTML::Chunks
 
 =head1 VERSION
 
@@ -84,15 +84,15 @@ no language code to find the most appropriate chunk to output. Simple.
 
 =head1 SYNOPSIS
 
-use HTML::ChunkLocal;
-$chunks = new HTML::ChunkLocal('chunkfile.html');
+use HTML::ChunksLocal;
+$chunks = new HTML::ChunksLocal('chunkfile.html');
 $chunks->output('sample_chunk', [pt, sp], @data);
 
 =head1 ROUTINES
 
 =over
 
-=item my $chunks = new HTML::ChunkLocal('chunkfile.html');
+=item my $chunks = new HTML::ChunksLocal('chunkfile.html');
 
 Create a new Chunks instance, and load up any chunk files supplied.
 

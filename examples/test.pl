@@ -1,6 +1,6 @@
-use HTML::ChunkLocal;
+use HTML::ChunksLocal;
 
-$chunks = new HTML::ChunkLocal('test.txt');
+$chunks = new HTML::ChunksLocal('test.txt');
 $chunks->setLangDefaults([en_us, en]);
 
 $lang = @ARGV ? $chunks->guessLanguage(@ARGV) : [ fr, sp ];
