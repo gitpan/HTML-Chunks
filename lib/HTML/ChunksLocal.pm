@@ -5,7 +5,7 @@ use HTML::Chunks;
 @ISA = qw(HTML::Chunks);
 
 use vars qw($VERSION);
-$VERSION = "1.0";
+$VERSION = "1.01";
 
 
 use strict;
@@ -66,7 +66,7 @@ __END__
 
 =head1 NAME
 
-HTML::ChunkisLocal - A simple localization layer for HTML::Chunks
+HTML::ChunksLocal - A simple localization layer for HTML::Chunks
 
 =head1 VERSION
 
@@ -84,9 +84,9 @@ no language code to find the most appropriate chunk to output. Simple.
 
 =head1 SYNOPSIS
 
-use HTML::ChunksLocal;
-$chunks = new HTML::ChunksLocal('chunkfile.html');
-$chunks->output('sample_chunk', [pt, sp], @data);
+ use HTML::ChunksLocal;
+ $chunks = new HTML::ChunksLocal('chunkfile.html');
+ $chunks->output('sample_chunk', [pt, sp], @data);
 
 =head1 ROUTINES
 
@@ -116,6 +116,17 @@ returns a list of probable fallbacks, like [en_us, en]. Note that it converts
 the '-' into a more easily used '_', though it will accept any non-alpha
 character as a language/country spearator. This sub can be made to be much
 more intelligent, but this is a nice 80/20 solution for now.
+
+=head1 CREDITS
+
+Created, developed and maintained by Mark W Blythe and Dave Balmer, Jr.
+Contact dbalmer@cpan.org or mblythe@cpan.org for comments or questions.
+
+=head1 LICENSE
+
+(C)2001-2004 Mark W Blythe and Dave Balmer Jr, all rights reserved.
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
 

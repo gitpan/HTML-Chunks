@@ -4,7 +4,7 @@ package HTML::Chunks;
 use strict;
 
 use vars qw($VERSION);
-$VERSION = "1.51";
+$VERSION = "1.52";
 
 
 sub new
@@ -263,7 +263,7 @@ __END__
 
 =head1 NAME
 
-HTML::Chunks - A simple text-based template engine
+HTML::Chunks - A simple nested template engine for HTML, XML and XHTML
 
 =head1 VERSION
 
@@ -532,5 +532,16 @@ it:
      });
    }
  }
+
+=head1 CREDITS
+
+Created, developed and maintained by Mark W Blythe and Dave Balmer, Jr.
+Contact dbalmer@cpan.org or mblythe@cpan.org for comments or questions.
+
+=head1 LICENSE
+
+(C)2001-2004 Mark W Blythe and Dave Balmer Jr, all rights reserved.
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut

@@ -7,7 +7,7 @@ $lang = @ARGV ? $chunks->guessLanguage(@ARGV) : [ fr, sp ];
 
 print "languages: @{$lang}\n";
 
-$chunks->output('hello', [en_gb, en], 'more data');
+$chunks->output('hello', $lang, 'more data');
 print "\n";
 
 $chunks->output('yes', $lang, 'more data');
