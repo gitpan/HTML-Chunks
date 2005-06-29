@@ -1,8 +1,13 @@
 MANIFEST
 Makefile.PL
-examples/test.pl
-examples/test.txt
-lib/HTML/ChunkLocal.pm
+examples/local.pl
+examples/local.txt
+examples/meals.html
+examples/meals.pl
+examples/super.pl
 lib/HTML/Chunks.pm
-t/use.t
+lib/HTML/Chunks/Local.pm
+lib/HTML/Chunks/Super.pm
+lib/HTML/ChunksLocal.pm
 readme
+t/use.t

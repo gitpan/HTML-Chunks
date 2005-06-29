@@ -1,18 +1,17 @@
-# $Id: Chunks.pm,v 1.51 2003/06/28 00:18:31 dbalmer Exp $
+# $Id: Chunks.pm,v 1.3 2005/06/28 07:06:17 mark Exp $
 
 package HTML::Chunks;
+
 use strict;
 
-use vars qw($VERSION);
-$VERSION = "1.52";
-
+our $VERSION    = '1.53';
+our $DATA_REGEX = qr/##[\w\.]+##/;
 
 sub new
 {
 	my $self = bless {}, shift;
 
-	$self->init(@_) if @_;
-
+	$self->init(@_);
 	return $self;
 }
 
@@ -24,7 +23,7 @@ sub init
 	$self->{cascade}   = 1;
 	$self->{dataStack} = [];
 	$self->{chunk}     = {};
-	$self->{default}   = '';
+	$self->{default}   = undef;
 	
 	$self->read(@_) if @_;
 }
@@ -134,7 +133,7 @@ sub output
 {
 	my $self = shift;
 	my $name = shift;
-	
+
 	$self->outputAsChunk(\$self->{chunk}{$name}, @_);
 }
 
@@ -149,17 +148,26 @@ sub outputAsChunk
 		$data ||= {};
 		
 		push @{$self->{dataStack}}, $data;
-		
-		foreach my $piece (split(/(?:<!--\s+)?(##[\w\.]+##)(?:\s+-->)?/, $$chunkRef)) {
-			if ($piece =~ /##([\w\.]+)##/) {
-				$self->outputData($1, @_);
-			}
-			else {
-				print $piece;
-			}
-		}
-		
+		$self->outputBasicChunk($chunkRef, @_);
 		pop @{$self->{dataStack}};
+	}
+}
+
+# basic chunk output including data substitution, using data already
+# on the data stack.
+sub outputBasicChunk
+{
+	my $self = shift;
+	my $chunk = shift; 
+	my $chunkRef = ref $chunk ? $chunk : \$chunk;
+
+	foreach my $piece (split(/(<!--\s*$DATA_REGEX\s*-->|$DATA_REGEX)/o, $$chunkRef)) {
+		if ($piece =~ /($DATA_REGEX)/o) {
+			$self->outputData(substr($1, 2, -2), @_);
+		}
+		else {
+			print $piece;
+		}
 	}
 }
 
@@ -167,7 +175,6 @@ sub outputData
 {
 	my $self = shift;
 	my $name = shift;
-	
 	my $value = $self->getDataValue($name);
 	
 	if (ref $value eq 'CODE') {
@@ -267,7 +274,7 @@ HTML::Chunks - A simple nested template engine for HTML, XML and XHTML
 
 =head1 VERSION
 
-$Revision: 1.5 $
+1.53
 
 =head1 DESCRIPTION
 
@@ -279,10 +286,9 @@ generating email messages, XML data files, etc.
 
 =head1 SYNOPSIS
 
- use HTML::Chunks;
- 
  my $engine = new HTML::Chunks(@chunkFiles);
- $engine->readChunkFile('morechunks.htm');
+
+ $engine->readChunkFile('morechunks.html');
  $engine->addChunk($smallChunk, \$hugeChunk);
  $engine->addNamedChunk('myChunk', $chunk);
  
@@ -479,7 +485,7 @@ Consider the following chunk definition:
  </html>
  <!-- end MealPage -->
 
-Let's say this were in a file called I<meals.htm>.  Because
+Let's say this were in a file called I<meals.html>.  Because
 we embedded some chunk definitions within others, you could
 actually view it in a web browser and get a preview of things
 to come.  Again, embedding one definition within another means
@@ -494,7 +500,7 @@ it:
  
  # create a new engine and read our chunk definitions
  
- my $engine = new HTML::Chunks('meals.htm');
+ my $engine = new HTML::Chunks('meals.html');
  
  # output the main 'mealPage' chunk.  name information
  # is supplied with static text.  the 'meals' data element
@@ -533,6 +539,11 @@ it:
    }
  }
 
+=head1 SEE ALSO
+
+For the adventurous, there is L<HTML::Chunks::Super>, a subclass of
+HTML::Chunks with enhanced features.
+
 =head1 CREDITS
 
 Created, developed and maintained by Mark W Blythe and Dave Balmer, Jr.
@@ -540,7 +551,7 @@ Contact dbalmer@cpan.org or mblythe@cpan.org for comments or questions.
 
 =head1 LICENSE
 
-(C)2001-2004 Mark W Blythe and Dave Balmer Jr, all rights reserved.
+(C)2001-2005 Mark W Blythe and Dave Balmer Jr, all rights reserved.
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 

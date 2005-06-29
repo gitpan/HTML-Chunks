@@ -1,9 +1,14 @@
-use HTML::ChunksLocal;
+#!/usr/bin/perl
 
-$chunks = new HTML::ChunksLocal('test.txt');
-$chunks->setLangDefaults([en_us, en]);
+# $Id: local.pl,v 1.1 2005/06/28 07:05:32 mark Exp $
 
-$lang = @ARGV ? $chunks->guessLanguage(@ARGV) : [ fr, sp ];
+use HTML::Chunks::Local;
+use strict;
+
+my $chunks = new HTML::Chunks::Local('local.txt');
+$chunks->setLangDefaults([qw(en_us en)]);
+
+my $lang = @ARGV ? $chunks->guessLanguage(@ARGV) : [ qw(fr sp) ];
 
 print "languages: @{$lang}\n";
 

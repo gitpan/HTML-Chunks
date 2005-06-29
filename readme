@@ -10,15 +10,19 @@ systems while making it easier to produce proper code that is easily maintained.
 
 HTML::Chunks - The core class
 
-HTML::ChunksLocal - A subclass which handles localization issues, based on the
-      browser language preference codes (e.g. en, fr) to choose the best chunk
-      to display data. Allows language fallback chaining as well, so display
-      oriented chunks need not be copied tediously for each language.
+HTML::Chunks::Local - A subclass which handles localization issues, based on the
+   browser language preference codes (e.g. en, fr) to choose the best chunk
+   to display data. Allows language fallback chaining as well, so display
+   oriented chunks need not be copied tediously for each language.
+
+HTML::Chunks::Super - A subclass with superpowers such as conditionals
 
 
 PREREQUISITES
 
 Perl 5.005 or higher.
+
+HTML::Chunks::Super requires the IO::Scalar and Safe modules.
 
 
 INSTALLATION
@@ -40,7 +44,7 @@ for more documentation, examples, etc.
 
 COPYRIGHT
 
-(C) 2001-2004 Mark W Blythe and Dave Balmer, Jr. All rights reserved.
+(C) 2001-2005 Mark W Blythe and Dave Balmer, Jr. All rights reserved.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
