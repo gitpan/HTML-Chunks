@@ -1,5 +1,3 @@
-# $Id: ChunksLocal.pm,v 1.2 2005/06/27 20:05:12 mark Exp $
-
 package HTML::ChunksLocal;
 
 our $VERSION = '1.02';

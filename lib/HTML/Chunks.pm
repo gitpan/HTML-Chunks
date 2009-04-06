@@ -1,11 +1,10 @@
-# $Id: Chunks.pm,v 1.3 2005/06/28 07:06:17 mark Exp $
-
 package HTML::Chunks;
 
 use strict;
 
-our $VERSION    = '1.53';
-our $DATA_REGEX = qr/##[\w\.]+##/;
+our $VERSION    = '1.54';
+
+use constant DATA_REGEX => qr/##[\w\.]+##/;
 
 sub new
 {
@@ -160,9 +159,10 @@ sub outputBasicChunk
 	my $self = shift;
 	my $chunk = shift; 
 	my $chunkRef = ref $chunk ? $chunk : \$chunk;
+	my $data_regex = $self->DATA_REGEX;
 
-	foreach my $piece (split(/(<!--\s*$DATA_REGEX\s*-->|$DATA_REGEX)/o, $$chunkRef)) {
-		if ($piece =~ /($DATA_REGEX)/o) {
+	foreach my $piece (split(/(<!--\s*$data_regex\s*-->|$data_regex)/o, $$chunkRef)) {
+		if ($piece =~ /($data_regex)/o) {
 			$self->outputData(substr($1, 2, -2), @_);
 		}
 		else {

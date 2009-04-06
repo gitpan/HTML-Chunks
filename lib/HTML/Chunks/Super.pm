@@ -1,5 +1,3 @@
-# $Id: Super.pm,v 1.1 2005/06/27 20:06:34 mark Exp $
-
 package HTML::Chunks::Super;
 
 use Safe;
@@ -195,7 +193,7 @@ That warning aside, here is the extended chunk syntax:
  more chunks
  <!-- ELSE -->
  chunky chunk of chunks
- <!-- END -->
+ <!-- ENDIF -->
 
 The C<condition> can by most any valid perl expression and will usually
 reference one or more chunk data elements.  See the L<HTML::Chunks>
