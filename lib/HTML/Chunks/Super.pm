@@ -5,7 +5,7 @@ use IO::Scalar;
 use strict;
 use base qw(HTML::Chunks);
 
-our $VERSION = "1.0";
+our $VERSION = "1.01";
 
 sub new
 {
@@ -233,7 +233,7 @@ Contact dbalmer@cpan.org or mblythe@cpan.org for comments or questions.
 
 =head1 LICENSE
 
-(C)2001-2005 Mark W Blythe and Dave Balmer Jr, all rights reserved.
+(C)2001-2009 Mark W Blythe and Dave Balmer Jr, all rights reserved.
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 

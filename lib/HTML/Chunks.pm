@@ -2,7 +2,7 @@ package HTML::Chunks;
 
 use strict;
 
-our $VERSION    = '1.54';
+our $VERSION = '1.55';
 
 use constant DATA_REGEX => qr/##[\w\.]+##/;
 
@@ -161,8 +161,8 @@ sub outputBasicChunk
 	my $chunkRef = ref $chunk ? $chunk : \$chunk;
 	my $data_regex = $self->DATA_REGEX;
 
-	foreach my $piece (split(/(<!--\s*$data_regex\s*-->|$data_regex)/o, $$chunkRef)) {
-		if ($piece =~ /($data_regex)/o) {
+	foreach my $piece (split(/(<!--\s*$data_regex\s*-->|$data_regex)/, $$chunkRef)) {
+		if ($piece =~ /($data_regex)/) {
 			$self->outputData(substr($1, 2, -2), @_);
 		}
 		else {
@@ -551,7 +551,7 @@ Contact dbalmer@cpan.org or mblythe@cpan.org for comments or questions.
 
 =head1 LICENSE
 
-(C)2001-2005 Mark W Blythe and Dave Balmer Jr, all rights reserved.
+(C)2001-2009 Mark W Blythe and Dave Balmer Jr, all rights reserved.
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
