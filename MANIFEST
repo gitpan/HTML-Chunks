@@ -8,6 +8,5 @@ examples/super.pl
 lib/HTML/Chunks.pm
 lib/HTML/Chunks/Local.pm
 lib/HTML/Chunks/Super.pm
-lib/HTML/ChunksLocal.pm
 readme
 t/use.t
